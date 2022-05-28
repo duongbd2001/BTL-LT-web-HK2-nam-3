@@ -46,6 +46,12 @@ public class HomeController {
         }
     }
 
+    @GetMapping("/sign-out")
+    public String signOut(HttpServletRequest request, Model model){
+        model.addAttribute("situation", "signIn");
+        return "views/home";
+    }
+
     @GetMapping("/profile")
     public String profile() {
         return "views/profile";
