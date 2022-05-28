@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>King's Hotel</title>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://isetup.o2.co.uk/resources/styles/styles.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="sign_in.html">
+    <link rel="icon" type="image/x-icon" href="https://d2dgtayfmpkokn.cloudfront.net/wp-content/uploads/sites/312/2016/09/08171516/crown-favicon.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <style>
+        button:hover{
+            opacity: 0.8;
+        }
+        html{
+            line-height: 1.15;
+        }
+        .form-sign-in{
+            display: flex;
+            left: auto;
+            font-family: proxima-nova,Helvetica,Arial,sans-serif;
+            height: 50%;
+            float: left;
+        }
+        .sign-in-textBox{
+            width: 100%;
+            height: 40px;
+            box-sizing: border-box;
+            letter-spacing: normal;
+            color: #1c1c1c;
+            font-size: 16px;
+        }
+        .sign-in-button{
+            height: 40px;
+            width: 100%;
+            font-size: 28px;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        .sign-in-decorate{
+            font-family: proxima-nova,Helvetica,Arial,sans-serif;
+            /*display: flex;*/
+            float: right;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="title" style="height: 20%">
+    <h1 style="text-align: center; position: center; font-family: Swiss-721,Helvetica,Arial,sans-serif; padding-bottom: 30px">
+        Welcome to King's Hotel <i class="fas fa-crown"></i></h1>
+</div>
+<!--tao form dang nhap-->
+<div class="container" style="margin-left: 6%; margin-right: 6%">
+    <div class="form-sign-in">
+        <!--/*@thymesVar id="situation" type="Hotel"*/-->
+        <form action="/" th:if="${situation}=='signIn'" class="sign-in-form" name="directLoginForm" method="post">
+            <h3 style="text-align: center">Sign in to your account</h3>
+
+            <!--form nhap username-->
+            <div class="sign-in-username" style="padding-bottom: 30px">
+                <label class="username-label" style="font-size: 17px"><b> Username</b></label><br>
+                <input class="sign-in-textBox" type="text"
+                       name="username" maxlength="100" placeholder="Enter your Username">
+            </div>
+
+            <!--form nhap password-->
+            <div class="sign-in-password" style="padding-bottom: 30px">
+                <label class="password-label" style="font-size: 17px"><b> Password</b></label><br>
+                <input class="sign-in-textBox" type="password"
+                       name="password" maxlength="100" placeholder="Enter your Password">
+            </div>
+
+            <!--nut dang nhap-->
+            <div class="sign-in-button">
+                <button type="submit" name="signIn" style="border: 0px; height: 100%;width: 100%;background-color: #04AA6D; "><b>Sign in</b></button>
+            </div>
+            <p style="color: red" th:text="${message}"></p>
+
+            <!--link den trang dang ki-->
+            <p style="width: fit-content"><b>Don't have account?</b>
+<!--                <a href="/sign-up" style="color: #c6b6ff" data-bs-toggle="modal" data-bs-target="#exampleModal"> Create a new account here.</a></b>-->
+                <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content ">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLabel">Create a new acount</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+
+                                        <div class="form-outline">
+                                            <input type="text" id="firstName" class="form-control form-control-lg" />
+                                            <label class="form-label" for="firstName">First Name</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+
+                                        <div class="form-outline">
+                                            <input type="text" id="lastName" class="form-control form-control-lg" />
+                                            <label class="form-label" for="lastName">Last Name</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-4 d-flex align-items-center">
+
+                                        <div class="form-outline datepicker w-100">
+                                            <input type="text" class="form-control form-control-lg" id="birthdayDate" />
+                                            <label for="birthdayDate" class="form-label">Birthday</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+
+                                        <h6 class="mb-2 pb-1">Gender: </h6>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
+                                                   value="option1" checked />
+                                            <label class="form-check-label" for="femaleGender">Female</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
+                                                   value="option2" />
+                                            <label class="form-check-label" for="maleGender">Male</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
+                                                   value="option3" />
+                                            <label class="form-check-label" for="otherGender">Other</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-4 pb-2">
+
+                                        <div class="form-outline">
+                                            <input type="email" id="emailAddress" class="form-control form-control-lg" />
+                                            <label class="form-label" for="emailAddress">Email</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 mb-4 pb-2">
+
+                                        <div class="form-outline">
+                                            <input type="tel" id="phoneNumber" class="form-control form-control-lg" />
+                                            <label class="form-label" for="phoneNumber">Phone Number</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </p>
+        </form>
+
+    </div>
+    <div class="sign-in-decorate">
+        <h3>Join Kingdom Hotel</h3>
+        <img src="https://cache.marriott.com/marriottassets/universal-nav/rewards/JoinMR_photo_121918.jpg?interpolation=progressive-bilinear&downsize=1180px:*" style="width: 90%; height: 90%" alt="Image review of hotel">
+        <ul style="text-align: left; font-size: 1.1rem; margin-left: 10px">
+            <li style="padding: 8px">Free in-room wifi</li>
+            <li style="padding: 8px">Diversified services</li> <!--dich vu da dang-->
+            <li style="padding: 8px">Mobile check-in and more</li>
+        </ul>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>
