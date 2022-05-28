@@ -41,6 +41,7 @@ public class HomeController {
             model.addAttribute("situation", "signed_in");
             return new ModelAndView("views/home");
         } else {
+            model.addAttribute("situation","formSignIn");
             model.addAttribute("message", "Login failed! Please check your password");
             return new ModelAndView("views/home");
         }
