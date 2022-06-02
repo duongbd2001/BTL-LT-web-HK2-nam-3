@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>King's Hotel</title>
+    <link rel="icon" type="image/x-icon"
+          href="https://d2dgtayfmpkokn.cloudfront.net/wp-content/uploads/sites/312/2016/09/08171516/crown-favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+            crossorigin="anonymous"></script>
+    <style>
+
+        .card-registration [readonly]:not([disabled]) {
+            font-size: 1rem;
+            line-height: 2.15;
+            padding-left: .75em;
+            padding-right: .75em;
+        }
+
+        .card-registration {
+            top: 13px;
+        }
+
+        .col-md-6 {
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+<!--thanh navbar trang chủ-->
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+        <a href="/" class="navbar-brand"> HomePage</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<!--form đăng kí thông tin và tài khoản & mật khẩu-->
+<section class="vh-100 gradient-custom">
+    <div class="container py-3 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="row col-12 col-lg-9 col-xl-7">
+                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                    <div class=" card-body p-4 p-md-5">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Create a new Account </h3>
+
+                        <!--form dang ki thong tin khach hang-->
+                        <form>
+                            <!--/*@thymesVar id="messages" type="Hotel.Controller.SignUpController"*/-->
+                            <!--/*@thymesVar id="customer" type="Hotel.Model.Customer"*/-->
+                            <!--/*@thymesVar id="situation" type="Hotel.Controller.SignInController"*/-->
+                            <form th:object="${customer}">
+
+                                <!--Ho ten khach hang-->
+                                <div class="row col-md-6 mb-3">
+                                    <div class="form-outline">
+                                        <label class="form-label">Full Name</label>
+                                        <input type="text"
+                                               name="name"
+                                               class="form-control form-control-lg"
+                                               th:field="*{name}"
+                                               required
+                                        />
+                                    </div>
+                                </div>
+
+                                <!--CCCD-->
+                                <div class="row col-md-6 mb-3">
+                                    <div class="form-outline datepicker w-100">
+                                        <label for="citizenIdentification" class="form-label">Citizen
+                                            Identification</label>
+                                        <input type="text" class="form-control form-control-lg"
+                                               id="citizenIdentification"
+                                               th:field="*{citizenIdentification}"
+                                               required
+                                        />
+                                        <!--neu cccd cua khach hang bi trung thi yeu cau nhap lai-->
+                                        <p th:if="${situation}=='existed'" th:text="${messages}"
+                                           style="color: red"></p>
+                                    </div>
+
+                                </div>
+
+                                <!--So dien thoai-->
+                                <div class="row col-md-6 mb-3">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="phoneNumber">Phone Number</label>
+                                        <input type="email" id="phoneNumber" class="form-control form-control-lg"
+                                               th:field="*{phoneNumber}"
+                                               required/>
+                                    </div>
+                                </div>
+
+                                <!--Email-->
+                                <div class="row col-md-6 mb-3">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="email">Email</label>
+                                        <input type="tel" id="email" class="form-control form-control-lg"
+                                               th:field="*{email}"
+                                               required/>
+                                    </div>
+                                </div>
+
+                                <!--Dia chi cua khach hang-->
+                                <div class="row col-md-6 mb-3">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="address">Address</label>
+                                        <input type="text" id="address" class="form-control form-control-lg"
+                                               th:field="*{address}"
+                                               required/>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <!--dang ki tai khoan va mat khau-->
+                            <br>
+                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Set your password</h3>
+                            <!--/*@thymesVar id="userSignIn" type="Hotel"*/-->
+                            <form th:object="${userSignIn}" th:action="@{/register}" method="post">
+
+                                <!--Ten dang nhap-->
+                                <div class="row col-md-6 mb-3">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="username">Username</label>
+                                        <input type="email"
+                                               id="username"
+                                               class="form-control form-control-lg"
+                                               field="*{username}"
+                                        />
+                                        <p th:if="${situation}=='existed'" th:text="${messages}"
+                                           style="color: red"></p>
+                                    </div>
+                                </div>
+
+                                <!--Mat Khau-->
+                                <div class="row col-md-6 mb-3">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="password">Password</label>
+                                        <input type="password" id="password"
+                                               class="form-control form-control-lg"
+                                               field="*{password}"/>
+                                        <p th:if="${situation}=='existed'" th:text="${messages}"
+                                           style="color: red"></p>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                    Submit
+                                </button>
+                                <!--Neu dang ki thanh cong thi hien ra thong bao Success-->
+                                <div class="mt-4 pt-2">
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                         th:if="${situation}=='success'">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">
+                                                        Create account Success.</h5>
+                                                    <button type="button" class="btn-close"
+                                                            data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary"><a
+                                                            href="/"
+                                                            style="color: white; text-decoration: none">OK</a>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
