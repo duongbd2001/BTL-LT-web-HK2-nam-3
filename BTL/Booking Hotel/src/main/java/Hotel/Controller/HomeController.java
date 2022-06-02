@@ -22,8 +22,6 @@ public class HomeController {
         return "views/home";
     }
 
-
-
     @GetMapping("/profile")
     public String profile(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
