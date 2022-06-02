@@ -6,24 +6,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_USers")
+@Table(name = "log_in")
 public class UserSignIn {
     @Id
-    @Column(name = "UserID", nullable = false, unique = true)
+    @Column(name = "id_khach_hang", nullable = false, unique = true)
     private int userID;
-    @Column(name = "full_name", length = 50)
-    private String fullName;
     @Column(name = "user_name", length = 50)
     private String username;
-    @Column(name = "pass_wd", length = 50)
+    @Column(name = "pass_word", length = 50)
     private String password;
 
     public UserSignIn() {
     }
 
-    public UserSignIn(int userID, String fullName, String username, String password) {
+    public UserSignIn(int userID, String username, String password) {
         this.userID = userID;
-        this.fullName = fullName;
         this.username = username;
         this.password = password;
     }
@@ -34,14 +31,6 @@ public class UserSignIn {
 
     public void setUserID(int userID) {
         this.userID = userID;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     public String getUsername() {

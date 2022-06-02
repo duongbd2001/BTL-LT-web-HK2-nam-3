@@ -6,23 +6,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_KhachHang")
+@Table(name = "khach_hang")
 public class Customer {
     @Id
-    @Column(name = "IDKhachHang", nullable = false, unique = true)
+    @Column(name = "id_khach_hang", nullable = false, unique = true)
     public int id;
-    @Column(name = "HoTen", nullable = false, length = 50)
+    @Column(name = "ho_ten", nullable = false, length = 50)
     public String name;
-    @Column(name = "CCCD", nullable = false, length = 20)
-    public String citizenIdentification;    //Can cuoc cong dan
-    @Column(name = "SDT", length = 20)
+    @Column(name = "cccd", nullable = false)
+    public long citizenIdentification;    //Can cuoc cong dan
+    @Column(name = "sdt", length = 20)
     public String phoneNumber;
-    @Column(name = "EMAIL", length = 20)
+    @Column(name = "email", length = 20)
     public String email;
-    @Column(name = "DiaChi", length = 50)
+    @Column(name = "dia_chi", length = 50)
     public String address;
 
-    public Customer(int id, String name, String citizenIdentification, String phoneNumber, String email, String address) {
+    public Customer(int id, String name, long citizenIdentification, String phoneNumber, String email, String address) {
         this.id = id;
         this.name = name;
         this.citizenIdentification = citizenIdentification;
@@ -50,11 +50,11 @@ public class Customer {
         this.name = name;
     }
 
-    public String getCitizenIdentification() {
+    public long getCitizenIdentification() {
         return citizenIdentification;
     }
 
-    public void setCitizenIdentification(String citizenIdentification) {
+    public void setCitizenIdentification(long citizenIdentification) {
         this.citizenIdentification = citizenIdentification;
     }
 
