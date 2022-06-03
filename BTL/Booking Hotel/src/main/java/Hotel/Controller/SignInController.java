@@ -37,6 +37,7 @@ public class SignInController {
         if (userSignIn.isPresent()) {
             UserSignIn signIn = signInRepository.findUserSignInModelByUsernameAndPassword(username, password);
             Customer customer = customerRepository.findCustomerById(signIn.getUserID());
+            session.setAttribute("customer", customer);
             session.setAttribute("username", username);
             session.setAttribute("password", password);
             model.addAttribute("situation", "signed_in");

@@ -53,9 +53,9 @@
                         <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Create a new Account </h3>
 
                         <!--form dang ki thong tin khach hang-->
-                        <form>
+                        <form th:action="@{/register}" method="post">
                             <!--/*@thymesVar id="messages" type="Hotel.Controller.SignUpController"*/-->
-                            <!--/*@thymesVar id="customer" type="Hotel.Model.Customer"*/-->
+                            <!--/*@thymesVar id="customer" type="Hotel.Controller.SignUpController"*/-->
                             <!--/*@thymesVar id="situation" type="Hotel.Controller.SignInController"*/-->
                             <form th:object="${customer}">
 
@@ -123,7 +123,7 @@
                             <!--dang ki tai khoan va mat khau-->
                             <br>
                             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Set your password</h3>
-                            <!--/*@thymesVar id="userSignIn" type="Hotel"*/-->
+                            <!--/*@thymesVar id="userSignIn" type="Hotel.Model.UserSignIn"*/-->
                             <form th:object="${userSignIn}" th:action="@{/register}" method="post">
 
                                 <!--Ten dang nhap-->
@@ -133,7 +133,7 @@
                                         <input type="email"
                                                id="username"
                                                class="form-control form-control-lg"
-                                               field="*{username}"
+                                               th:field="*{username}"
                                         />
                                         <p th:if="${situation}=='existed'" th:text="${messages}"
                                            style="color: red"></p>
@@ -146,7 +146,7 @@
                                         <label class="form-label" for="password">Password</label>
                                         <input type="password" id="password"
                                                class="form-control form-control-lg"
-                                               field="*{password}"/>
+                                               th:field="*{password}"/>
                                         <p th:if="${situation}=='existed'" th:text="${messages}"
                                            style="color: red"></p>
                                     </div>

@@ -25,6 +25,8 @@ public class SignUpController {
     public String signUp(Model model){
         Customer customer = new Customer();
         model.addAttribute("customer", customer);
+        UserSignIn userSignIn = new UserSignIn();
+        model.addAttribute("userSignIn", userSignIn);
         return "views/signUp";
     }
 

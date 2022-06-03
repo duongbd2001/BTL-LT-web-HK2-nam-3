@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -23,10 +25,10 @@ public class HomeController {
     }
 
     @GetMapping("/profile")
-    public String profile(Model model, HttpServletRequest request) {
+    public ModelAndView profile(@ModelAttribute(name = "user") Customer customer, Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-//        UserSignIn userSignIn = signInRepository.findByUsernameAndPassword();
-//        model.addAttribute("user", userSignIn);
-        return "views/profile";
+        customer = (Customer) session.getAttribute("customer");
+        model.addAttribute("user", customer);
+        return new ModelAndView("views/profile");
     }
 }
