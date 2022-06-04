@@ -1,9 +1,6 @@
 package Hotel.Controller;
 
 import Hotel.Model.Customer;
-import Hotel.Model.UserSignIn;
-import Hotel.Repository.SignInRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,20 +12,21 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
-    @Autowired
-    private SignInRepository signInRepository;
 
+//    Trang chu khi chua dang nhap
     @GetMapping("/")
     public String homePage(Model model) {
         model.addAttribute("situation","signIn");
         return "views/home";
     }
 
-    @GetMapping("/profile")
-    public ModelAndView profile(@ModelAttribute(name = "user") Customer customer, Model model, HttpServletRequest request) {
+//    Trang chu da dang nhap
+    @GetMapping("/home")
+    public ModelAndView home(Model model, @ModelAttribute(name = "user") Customer customer, HttpServletRequest request) {
         HttpSession session = request.getSession();
         customer = (Customer) session.getAttribute("customer");
-        model.addAttribute("user", customer);
-        return new ModelAndView("views/profile");
+        model.addAttribute("name", customer.getName());
+        model.addAttribute("situation","signed_in");
+        return new ModelAndView("views/home");
     }
 }

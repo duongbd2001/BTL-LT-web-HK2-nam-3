@@ -1,9 +1,7 @@
 package Hotel.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "khach_hang")
@@ -11,16 +9,24 @@ public class Customer {
     @Id
     @Column(name = "id_khach_hang", nullable = false, unique = true)
     public int id;
+
     @Column(name = "ho_ten", nullable = false, length = 50)
     public String name;
+
     @Column(name = "cccd", nullable = false)
     public long citizenIdentification;    //Can cuoc cong dan
+
     @Column(name = "sdt", length = 20)
     public String phoneNumber;
+
     @Column(name = "email", length = 20)
     public String email;
+
     @Column(name = "dia_chi", length = 50)
     public String address;
+
+    @OneToMany(mappedBy = "cus")
+    private List<Booking> bookings;
 
     public Customer(int id, String name, long citizenIdentification, String phoneNumber, String email, String address) {
         this.id = id;
@@ -80,5 +86,13 @@ public class Customer {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }
