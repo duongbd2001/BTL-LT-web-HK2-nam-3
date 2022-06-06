@@ -69,7 +69,7 @@ public class IDaoCommonImpl implements IDaoCommon {
 
     @Override
     public Query createQuery(String hql) {
-        return getSession().createQuery(hql);
+        return (Query) getSession().createQuery(hql);
     }
 
     @Override

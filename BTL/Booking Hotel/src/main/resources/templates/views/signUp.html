@@ -57,16 +57,16 @@
                             <!--/*@thymesVar id="messages" type="Hotel.Controller.SignUpController"*/-->
                             <!--/*@thymesVar id="customer" type="Hotel.Controller.SignUpController"*/-->
                             <!--/*@thymesVar id="situation" type="Hotel.Controller.SignInController"*/-->
-                            <form th:object="${customer}">
+                            <form>
 
                                 <!--Ho ten khach hang-->
                                 <div class="row col-md-6 mb-3">
                                     <div class="form-outline">
                                         <label class="form-label">Full Name</label>
                                         <input type="text"
-                                               name="name"
+                                               name="fullName"
                                                class="form-control form-control-lg"
-                                               th:field="*{name}"
+
                                                required
                                         />
                                     </div>
@@ -78,8 +78,8 @@
                                         <label for="citizenIdentification" class="form-label">Citizen
                                             Identification</label>
                                         <input type="text" class="form-control form-control-lg"
+                                               name="citizenIdentification"
                                                id="citizenIdentification"
-                                               th:field="*{citizenIdentification}"
                                                required
                                         />
                                         <!--neu cccd cua khach hang bi trung thi yeu cau nhap lai-->
@@ -93,8 +93,8 @@
                                 <div class="row col-md-6 mb-3">
                                     <div class="form-outline">
                                         <label class="form-label" for="phoneNumber">Phone Number</label>
-                                        <input type="email" id="phoneNumber" class="form-control form-control-lg"
-                                               th:field="*{phoneNumber}"
+                                        <input id="phoneNumber" class="form-control form-control-lg"
+                                               name="phoneNumber"
                                                required/>
                                     </div>
                                 </div>
@@ -104,7 +104,7 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="email">Email</label>
                                         <input type="tel" id="email" class="form-control form-control-lg"
-                                               th:field="*{email}"
+                                               name="email"
                                                required/>
                                     </div>
                                 </div>
@@ -114,26 +114,26 @@
                                     <div class="form-outline">
                                         <label class="form-label" for="address">Address</label>
                                         <input type="text" id="address" class="form-control form-control-lg"
-                                               th:field="*{address}"
+                                               name="address"
                                                required/>
                                     </div>
                                 </div>
-                            </form>
+<!--                            </form>-->
 
                             <!--dang ki tai khoan va mat khau-->
                             <br>
                             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Set your password</h3>
                             <!--/*@thymesVar id="userSignIn" type="Hotel.Model.UserSignIn"*/-->
-                            <form th:object="${userSignIn}" th:action="@{/register}" method="post">
+<!--                            <form th:object="${userSignIn}" th:action="@{/register}" method="post">-->
 
                                 <!--Ten dang nhap-->
                                 <div class="row col-md-6 mb-3">
                                     <div class="form-outline">
                                         <label class="form-label" for="username">Username</label>
                                         <input type="email"
+                                               name="username"
                                                id="username"
                                                class="form-control form-control-lg"
-                                               th:field="*{username}"
                                         />
                                         <p th:if="${situation}=='existed'" th:text="${messages}"
                                            style="color: red"></p>
@@ -146,7 +146,7 @@
                                         <label class="form-label" for="password">Password</label>
                                         <input type="password" id="password"
                                                class="form-control form-control-lg"
-                                               th:field="*{password}"/>
+                                               name="password" />
                                         <p th:if="${situation}=='existed'" th:text="${messages}"
                                            style="color: red"></p>
                                     </div>

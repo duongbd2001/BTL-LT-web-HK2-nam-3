@@ -6,8 +6,9 @@ import javax.persistence.*;
 @Table(name = "log_in")
 public class UserSignIn {
     @Id
-    @Column(name = "id_khach_hang", nullable = false, unique = true)
-    private int userID;
+    @OneToOne
+    @JoinColumn(name = "id_khach_hang")
+    private Customer customer;
     @Column(name = "user_name", length = 50)
     private String username;
     @Column(name = "pass_word", length = 50)
@@ -16,18 +17,18 @@ public class UserSignIn {
     public UserSignIn() {
     }
 
-    public UserSignIn(int userID, String username, String password) {
-        this.userID = userID;
+    public UserSignIn(Customer customer, String username, String password) {
+        this.customer = customer;
         this.username = username;
         this.password = password;
     }
 
-    public int getUserID() {
-        return userID;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserID(Customer customer) {
+        this.customer = customer;
     }
 
     public String getUsername() {

@@ -36,7 +36,7 @@ public class SignInController {
         HttpSession session = request.getSession();
         if (userSignIn.isPresent()) {
             UserSignIn signIn = signInRepository.findUserSignInModelByUsernameAndPassword(username, password);
-            Customer customer = customerRepository.findCustomerById(signIn.getUserID());
+            Customer customer = customerRepository.findCustomerById(signIn.getCustomer().getId());
             session.setAttribute("customer", customer);
             session.setAttribute("username", username);
             session.setAttribute("password", password);

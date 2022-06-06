@@ -2,6 +2,7 @@ package Hotel.Service.ServiceImplement;
 
 import Hotel.Common.IDaoCommon;
 import Hotel.Model.Booking;
+import Hotel.Model.HistoryBooking;
 import Hotel.Repository.BookingRepository;
 import Hotel.Service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,7 @@ public class BookingServiceImpl implements BookingService {
     private IDaoCommon iDaoCommon;
 
     @Override
-    public List<Booking> findListBookingByID(Integer id) {
-        return bookingRepository.findListBookingById(id, iDaoCommon);
-    }
-
-    @Override
-    public List<Integer> findTotalMoney(Integer idCustomer) {
-        return bookingRepository.findTotalMoney(idCustomer);
+    public List<HistoryBooking> findListBookingByCustomerID(Integer idCustomer) {
+        return bookingRepository.findListBookingByCustomerID(idCustomer, iDaoCommon);
     }
 }

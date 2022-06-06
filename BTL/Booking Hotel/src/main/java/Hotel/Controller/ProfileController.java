@@ -1,9 +1,12 @@
 package Hotel.Controller;
 
+import Hotel.Common.IDaoCommon;
 import Hotel.Model.Booking;
 import Hotel.Model.Customer;
+import Hotel.Model.HistoryBooking;
 import Hotel.Repository.BookingRepository;
 import Hotel.Service.BookingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,29 +19,46 @@ import java.util.List;
 
 @Controller
 public class ProfileController {
+//    @Autowired
+//    private BookingService bookingService;
+
+    @Autowired
+    private IDaoCommon iDaoCommon;
+
+    @Autowired
     private BookingRepository bookingRepository;
-    private BookingService bookingService;
     //    Chuyen huong den trang profile
     @GetMapping("/profile")
     public ModelAndView profile(@ModelAttribute(name = "user") Customer customer, Model model, HttpServletRequest request) {
+        //lay thong tin nguoi dung khi da dang nhap
         HttpSession session = request.getSession();
         customer = (Customer) session.getAttribute("customer");
+
+        //hien thi thong tin ca nhan cua nguoi dung
         model.addAttribute("user", customer);
-        model.addAttribute("situation","profile");
+//        model.addAttribute("situation","profile");
         ModelAndView modelA = new ModelAndView("views/profile");
         modelA.addObject("user", customer);
+
+        //hien thi thong tin danh sach cac phong da dat cua khach hang
+        List<HistoryBooking> bookingList = bookingRepository.findListBookingByCustomerID(customer.getId(), iDaoCommon);
+        model.addAttribute("historyBooking", bookingList);
+        modelA.addObject("historyBooking",bookingList);
+//        model.addAttribute("situation","bookingHistory");
         return modelA;
     }
 
     //form lich su dat phong
-    @GetMapping("/booking-history")
-    public String bookingHistory(Model model, HttpServletRequest request){
-        //lay thong tin nguoi dung khi da dang nhap
-        HttpSession session = request.getSession();
-        Customer customer = (Customer) session.getAttribute("customer");
-        List<Booking> bookingList = bookingService.findListBookingByID(customer.getId());
-        model.addAttribute("historyBooking", bookingList);
-        model.addAttribute("situation","bookingHistory");
-        return "views/profile";
-    }
+//    @GetMapping("/booking-history")
+//    public String bookingHistory(Model model, HttpServletRequest request){
+//        //lay thong tin nguoi dung khi da dang nhap
+//        HttpSession session = request.getSession();
+//        Customer customer = (Customer) session.getAttribute("customer");
+//
+//        //hien thi thong tin danh sach cac phong da dat cua khach hang
+//        List<Booking> bookingList = bookingService.findListBookingByCustomerID(customer.getId());
+//        model.addAttribute("historyBooking", bookingList);
+//        model.addAttribute("situation","bookingHistory");
+//        return "views/profile";
+//    }
 }

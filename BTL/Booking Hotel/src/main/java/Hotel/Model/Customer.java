@@ -7,6 +7,7 @@ import java.util.List;
 @Table(name = "khach_hang")
 public class Customer {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_khach_hang", nullable = false, unique = true)
     public int id;
 
@@ -14,7 +15,7 @@ public class Customer {
     public String name;
 
     @Column(name = "cccd", nullable = false)
-    public long citizenIdentification;    //Can cuoc cong dan
+    public String citizenIdentification;    //Can cuoc cong dan
 
     @Column(name = "sdt", length = 20)
     public String phoneNumber;
@@ -28,8 +29,16 @@ public class Customer {
     @OneToMany(mappedBy = "cus")
     private List<Booking> bookings;
 
-    public Customer(int id, String name, long citizenIdentification, String phoneNumber, String email, String address) {
+    public Customer(int id, String name, String citizenIdentification, String phoneNumber, String email, String address) {
         this.id = id;
+        this.name = name;
+        this.citizenIdentification = citizenIdentification;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+    }
+
+    public Customer(String name, String citizenIdentification, String phoneNumber, String email, String address) {
         this.name = name;
         this.citizenIdentification = citizenIdentification;
         this.phoneNumber = phoneNumber;
@@ -56,11 +65,11 @@ public class Customer {
         this.name = name;
     }
 
-    public long getCitizenIdentification() {
+    public String getCitizenIdentification() {
         return citizenIdentification;
     }
 
-    public void setCitizenIdentification(long citizenIdentification) {
+    public void setCitizenIdentification(String citizenIdentification) {
         this.citizenIdentification = citizenIdentification;
     }
 
