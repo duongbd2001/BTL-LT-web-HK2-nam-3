@@ -1,11 +1,8 @@
 package Hotel.Controller;
 
-import Hotel.Common.IDaoCommon;
-import Hotel.Model.Booking;
 import Hotel.Model.Customer;
 import Hotel.Model.HistoryBooking;
 import Hotel.Repository.BookingRepository;
-import Hotel.Service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,13 +16,8 @@ import java.util.List;
 
 @Controller
 public class ProfileController {
+
 //    @Autowired
-//    private BookingService bookingService;
-
-    @Autowired
-    private IDaoCommon iDaoCommon;
-
-    @Autowired
     private BookingRepository bookingRepository;
     //    Chuyen huong den trang profile
     @GetMapping("/profile")
@@ -41,9 +33,9 @@ public class ProfileController {
         modelA.addObject("user", customer);
 
         //hien thi thong tin danh sach cac phong da dat cua khach hang
-        List<HistoryBooking> bookingList = bookingRepository.findListBookingByCustomerID(customer.getId(), iDaoCommon);
-        model.addAttribute("historyBooking", bookingList);
-        modelA.addObject("historyBooking",bookingList);
+//        List<HistoryBooking> bookingList = bookingRepository.findListBookingByCustomerID(customer.getId());
+//        model.addAttribute("historyBooking", bookingList);
+//        modelA.addObject("historyBooking",bookingList);
 //        model.addAttribute("situation","bookingHistory");
         return modelA;
     }

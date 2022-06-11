@@ -1,11 +1,15 @@
 package Hotel.Model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "log_in")
-public class UserSignIn {
+public class UserSignIn implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
     @OneToOne
     @JoinColumn(name = "id_khach_hang")
     private Customer customer;
@@ -17,7 +21,7 @@ public class UserSignIn {
     public UserSignIn() {
     }
 
-    public UserSignIn(Customer customer, String username, String password) {
+    public UserSignIn(Customer customer, String username, String password)  {
         this.customer = customer;
         this.username = username;
         this.password = password;

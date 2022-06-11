@@ -1,12 +1,13 @@
 package Hotel.Model;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+@Entity
 @Table(name = "phong_thiet_bi")
 public class RoomDevice {
+    @Id
+    private int id;
+
     @OneToOne
     @JoinColumn(name = "id_thiet_bi")
     private Device idDevice;
@@ -19,6 +20,14 @@ public class RoomDevice {
     private int numOfDevice;
 
     public RoomDevice() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Device getIdDevice() {
