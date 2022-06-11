@@ -39,18 +39,4 @@ public class ProfileController {
 //        model.addAttribute("situation","bookingHistory");
         return modelA;
     }
-
-    //form lich su dat phong
-//    @GetMapping("/booking-history")
-//    public String bookingHistory(Model model, HttpServletRequest request){
-//        //lay thong tin nguoi dung khi da dang nhap
-//        HttpSession session = request.getSession();
-//        Customer customer = (Customer) session.getAttribute("customer");
-//
-//        //hien thi thong tin danh sach cac phong da dat cua khach hang
-//        List<Booking> bookingList = bookingService.findListBookingByCustomerID(customer.getId());
-//        model.addAttribute("historyBooking", bookingList);
-//        model.addAttribute("situation","bookingHistory");
-//        return "views/profile";
-//    }
 }
