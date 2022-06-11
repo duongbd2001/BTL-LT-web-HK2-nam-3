@@ -28,21 +28,15 @@ public class Booking {
     @JoinColumn(name = "id_khach_hang")
     private Customer cus;
 
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name = "id_phong")
-    private Room room;
+    private List<Room> room;
 
     @ManyToOne
     @JoinColumn(name = "id_dich_vu")
     private HotelService hotelService;
 
-//    @OneToMany(mappedBy = "room")
-//    private List<Room> roomList;
-//
-//    @OneToMany(mappedBy = "cus")
-//    private List<Customer> customerList;
-
-    public Booking(int id, Date checkIn, Date checkOut, int numOfDay, int totalMoney, Customer customer, Room room, HotelService hotelService) {
+    public Booking(int id, Date checkIn, Date checkOut, int numOfDay, int totalMoney, Customer customer, List<Room> room, HotelService hotelService) {
         this.id = id;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -104,11 +98,11 @@ public class Booking {
         this.cus = customer;
     }
 
-    public Room getRoom() {
+    public List<Room> getRoom() {
         return room;
     }
 
-    public void setRoom(Room room) {
+    public void setRoom(List<Room> room) {
         this.room = room;
     }
 
@@ -119,20 +113,4 @@ public class Booking {
     public void setHotelService(HotelService hotelService) {
         this.hotelService = hotelService;
     }
-
-//    public List<Customer> getCustomerList() {
-//        return customerList;
-//    }
-//
-//    public void setCustomerList(List<Customer> customerList) {
-//        this.customerList = customerList;
-//    }
-//
-//    public List<Room> getRoomList() {
-//        return roomList;
-//    }
-//
-//    public void setRoomList(List<Room> roomList) {
-//        this.roomList = roomList;
-//    }
 }

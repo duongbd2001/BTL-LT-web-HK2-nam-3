@@ -1,7 +1,6 @@
 package Hotel.Model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "phong")
@@ -21,8 +20,8 @@ public class Room {
     @JoinColumn(name = "id_loai_phong")
     private TypeOfRoom typeOfRoom;
 
-    @OneToMany(mappedBy = "room")
-    private List<Booking> bookings;
+    @ManyToOne()
+    private Booking bookings;
 
     public Room() {
     }
@@ -59,11 +58,11 @@ public class Room {
         this.typeOfRoom = typeOfRoom;
     }
 
-    public List<Booking> getBookings() {
+    public Booking getBookings() {
         return bookings;
     }
 
-    public void setBookings(List<Booking> bookings) {
+    public void setBookings(Booking bookings) {
         this.bookings = bookings;
     }
 }
